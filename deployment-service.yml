@@ -1,1 +1,33 @@
-#something will come here
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-vite-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: react-vite
+  template:
+    metadata:
+      labels:
+        app: react-vite
+    spec:
+      containers:
+        - name: react-vite-container
+          image: howaboutwepullsomeimages/fretboard:latest
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-vite-service
+spec:
+  selector:
+    app: react-vite
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer
