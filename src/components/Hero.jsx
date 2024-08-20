@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import first from "../assets/first.jpg";
 import second from "../assets/second.jpg";
 import third from "../assets/third.jpg";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   const settings = {
@@ -18,7 +19,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto py-4 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#F36361] via-[#A8A8A8] to-[#FCC04A]">
+    <div className="max-w-screen-2xl mx-auto py-4 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#F36361] via-[#A8A8A8] to-[#FCC04A]">
       <div className="container mx-auto px-11 w-full flex flex-col lg:flex-row items-center justify-between">
         {/* Left side content */}
         <div className="lg:w-1/2 mb-8 lg:mb-0">
@@ -32,9 +33,11 @@ const HeroSection = () => {
           <p className="text-xl text-white mb-6 drop-shadow">
             Where Superior Service Meets Client Success!
           </p>
-          <button className="bg-white text-[#F36361] hover:bg-opacity-90 font-bold py-3 px-6 rounded-lg transition duration-300 shadow-lg">
-            Explore Fretboard
-          </button>
+          <Link to="/solutions">
+            <button className="bg-white text-[#F36361] hover:bg-opacity-90 font-bold py-3 px-6 rounded-lg transition duration-300 shadow-lg">
+              Explore Fretboard
+            </button>
+          </Link>
         </div>
 
         {/* Right side carousel */}

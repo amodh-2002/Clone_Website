@@ -5,6 +5,7 @@ function Header() {
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [techExpertiseOpen, setTechExpertiseOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,17 +23,61 @@ function Header() {
     };
   }, []);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <header
-      className={`fixed w-full z-10 transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-white bg-opacity-20 backdrop-blur-lg shadow-lg text-gray-800"
           : "bg-transparent text-white"
       }`}
     >
-      <nav className="max-w-screen-2xl mx-auto px-20 py-4 flex items-center justify-between">
-        <div className="text-2xl font-bold">FRETBOARD ENGAGE</div>
-        <ul className="flex space-x-6">
+      {/* mobile menu  */}
+      <div className="md:hidden flex justify-end p-4">
+        <button onClick={toggleMobileMenu}>
+          <svg
+            className="w-6 h-6 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d={
+                isMobileMenuOpen
+                  ? "M6 18L18 6M6 6l12 12"
+                  : "M4 6h16M4 12h16M4 18h16"
+              }
+            />
+          </svg>
+        </button>
+      </div>
+
+      <nav
+        className={`max-w-screen-2xl mx-auto px-20 py-4 flex flex-col md:flex-row items-center justify-between ${
+          isMobileMenuOpen ? "flex" : "hidden md:flex"
+        }`}
+      >
+        <div className="text-2xl font-bold">
+          <Link to="/">FRETBOARD ENGAGE</Link>
+        </div>
+
+        <div className="md:hidden flex flex-col items-center mt-4 space-y-4">
+          <Link to="/solutions">Solutions</Link>
+          <Link to="/technology-expertise">Technology Expertise</Link>
+          <Link to="/job-seekers">Job Seekers</Link>
+          <Link to="/hire-talent">Hire Talent</Link>
+          <Link to="/company">Company</Link>
+          <Link to="/contact-us">Contact Us</Link>
+        </div>
+
+        <ul className="hidden md:flex space-x-6">
           <li className="relative group">
             <div
               className="cursor-pointer flex items-center"
@@ -77,21 +122,21 @@ function Header() {
                 <div className="relative bg-white text-gray-700 rounded-md shadow-lg">
                   <div className="absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-white" />
                   <ul className="relative z-10 py-2 rounded-md w-[260px]">
-                    <li className="px-4 py-2 hover:bg-gray-100 border-b">
-                      <Link to="/applicationDevelopment" className="">
+                    <Link to="/solutions/applicationDevelopment" className="">
+                      <li className="px-4 py-2 hover:bg-gray-100 border-b">
                         Application Development
-                      </Link>
-                    </li>
-                    <li className="px-4 py-2 hover:bg-gray-100 border-b">
-                      <Link to="/ODC" className="">
+                      </li>
+                    </Link>
+                    <Link to="/solutions/ODC" className="">
+                      <li className="px-4 py-2 hover:bg-gray-100 border-b">
                         ODC
-                      </Link>
-                    </li>
-                    <li className="px-4 py-2 hover:bg-gray-100 border-b">
-                      <Link to="/workforce" className=" ">
+                      </li>
+                    </Link>
+                    <Link to="/solutions/workforce" className=" ">
+                      <li className="px-4 py-2 hover:bg-gray-100 border-b">
                         Workforce solutions
-                      </Link>
-                    </li>
+                      </li>
+                    </Link>
                   </ul>
                 </div>
               </div>
